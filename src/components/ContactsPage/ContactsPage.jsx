@@ -5,7 +5,6 @@ import Filter from 'components/Filter/Filter';
 
 import { getContacts, getFilter, getFilteredContacts } from 'redux/selectors';
 import { addContact, deleteContact, setFilter } from 'redux/actions';
-import { act } from 'react-dom/test-utils';
 
 const ContactsPage = () => {
   const contacts = useSelector(getContacts);
