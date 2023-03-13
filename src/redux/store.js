@@ -15,9 +15,10 @@ const reducer = (state = initialState, action) => {
             const delContact = state.contacts.filter(item => item.id !== action.payload)
             return { ...state, contacts: delContact }
         case SET_FILTER:
-            return {...state, filter: action.payload}
+            return { ...state, filter: action.payload }
+        default:
+            return state
     }
-    return state
 }
 
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
