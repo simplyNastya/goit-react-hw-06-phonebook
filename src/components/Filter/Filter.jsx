@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import styles from './filter.module.css';
 
-const Filter = ({ filter, filterItem }) => {
+const Filter = ({ filter, onChange }) => {
   return (
     <div className={styles.container}>
       <div className={styles.inputGroup}>
@@ -9,7 +9,8 @@ const Filter = ({ filter, filterItem }) => {
         <input
           type="text"
           value={filter}
-          onChange={filterItem}
+          name="filter"
+          onChange={onChange}
           className={styles.input}
         />
       </div>
@@ -19,7 +20,7 @@ const Filter = ({ filter, filterItem }) => {
 
 export default Filter;
 
-Filter.propTypes = {
-  filter: PropTypes.string.isRequired,
-  filterItem: PropTypes.func.isRequired,
-};
+// Filter.propTypes = {
+//   filter: PropTypes.string.isRequired,
+//   filterItem: PropTypes.func.isRequired,
+// };

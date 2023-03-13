@@ -1,83 +1,11 @@
-import { useState, useRef, useEffect } from 'react';
-import { nanoid } from 'nanoid';
-import Form from './Form/Form';
-import Contacts from './Contacts/Contacts';
-import Filter from './Filter/Filter';
+import ContactsPage from './ContactsPage/ContactsPage';
+import store from 'redux/store';
+import { Provider } from 'react-redux';
 
 export const App = () => {
-  const [contacts, setContacts] = useState(() => {
-    const contacts = localStorage.getItem('my-contacts');
-    return contacts ? JSON.parse(contacts) : [];
-  });
-  const [filter, setFilter] = useState('');
-
-  const firstRender = useRef(true);
-
-  useEffect(() => {
-    if (firstRender.current) {
-      firstRender.current = false;
-      return;
-    }
-    localStorage.setItem('my-contacts', JSON.stringify(contacts));
-  }, [contacts]);
-
-  const formSubmitHandler = ({ name, number }) => {
-    if (isDublicate(name, number)) {
-      alert(`${name} ${number} is already exist`);
-      return;
-    }
-
-    setContacts(prevContacts => {
-      const newContact = {
-        id: nanoid(),
-        name,
-        number,
-      };
-
-      return [...prevContacts, newContact];
-    });
-  };
-
-  const isDublicate = (name, number) => {
-    const normalizedName = name.toLowerCase();
-    const dublicate = contacts.find(item => {
-      return (
-        item.name.toLowerCase() === normalizedName &&
-        item.number.toLowerCase() === number
-      );
-    });
-
-    return Boolean(dublicate);
-  };
-
-  const onFilterChange = event => {
-    setFilter(event.target.value);
-  };
-
-  const onDelete = id => {
-    setContacts(prevContacts => {
-      return prevContacts.filter(contact => contact.id !== id);
-    });
-  };
-
-  const filteredContacts = () => {
-    if (!filter) {
-      return contacts;
-    }
-    return contacts.filter(
-      ({ name, number }) =>
-        name.toLowerCase().includes(filter.toLowerCase()) ||
-        number.includes(filter)
-    );
-  };
-
   return (
-    <>
-      <h1 style={{ padding: 20 }}>Phonebook</h1>
-      <Form onSubmit={formSubmitHandler} />
-      <h2 style={{ padding: 20 }}>Contacts</h2>
-      <Filter filter={filter} filterItem={onFilterChange} />
-      <Contacts filteredContacts={filteredContacts} deleteItem={onDelete} />
-    </>
+    <Provider store={store}>
+      <ContactsPage />;
+    </Provider>
   );
 };
