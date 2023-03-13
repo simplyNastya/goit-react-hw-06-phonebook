@@ -32,18 +32,15 @@ const ContactsPage = () => {
       alert(`${name} ${number} is already exist`);
       return;
     }
-    const action = addContact({ name, number });
-    dispatch(action);
+    dispatch(addContact({ name, number }));
   };
 
   const onDeleteContact = id => {
-    const action = deleteContact(id);
-    dispatch(action);
+    dispatch(deleteContact(id));
   };
 
   const onFilterChange = event => {
-    const action = setFilter(event.target.value);
-    dispatch(action);
+    dispatch(setFilter(event.target.value));
   };
 
   return (
