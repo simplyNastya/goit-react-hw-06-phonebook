@@ -3,8 +3,10 @@ import Form from 'components/Form/Form';
 import Contacts from 'components/Contacts/Contacts';
 import Filter from 'components/Filter/Filter';
 
-import { getContacts, getFilter, getFilteredContacts } from 'redux/selectors';
-import { addContact, deleteContact, setFilter } from 'redux/actions';
+import { getContacts } from 'redux/contacts/contacts-selectors';
+import { getFilter, getFilteredContacts } from 'redux/filter/filter-selectors';
+import { addContact, deleteContact } from 'redux/contacts/contacts-actions';
+import { setFilter } from 'redux/filter/filter-actions';
 
 const ContactsPage = () => {
   const contacts = useSelector(getContacts);
