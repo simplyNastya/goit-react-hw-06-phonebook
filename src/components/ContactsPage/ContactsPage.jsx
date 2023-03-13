@@ -5,8 +5,8 @@ import Filter from 'components/Filter/Filter';
 
 import { getContacts } from 'redux/contacts/contacts-selectors';
 import { getFilter, getFilteredContacts } from 'redux/filter/filter-selectors';
-import { addContact, deleteContact } from 'redux/contacts/contacts-actions';
-import { setFilter } from 'redux/filter/filter-actions';
+import { addContact, deleteContact } from 'redux/contacts/contacts-slice';
+import { setFilter } from 'redux/filter/filter-slice';
 
 const ContactsPage = () => {
   const contacts = useSelector(getContacts);
